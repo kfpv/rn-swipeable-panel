@@ -91,7 +91,8 @@ export default App = () => {
 | **allowTouchOutside**   | `bool`     | Set true if you want to make toucable outside of panel      | `false` |
 | **noBar**               | `bool`     | Set true if you want to remove gray bar                     | `false` |
 | **scrollViewProps**     | `Object`   | Use this prop to override scroll view that inside the panel | `{}`    |
-
+| **onTouch**             | `Function` | NEW is called when panel is touched                         |         |
+| **onRelease**           | `Function` | NEW is called when panel touch is released                  |         |
 #### ⭐️ Show Your Support
 
 Please give a ⭐️ if this project helped you!
