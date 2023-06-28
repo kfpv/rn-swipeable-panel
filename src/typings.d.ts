@@ -97,6 +97,8 @@ declare interface SwipeablePanelProps extends React.Props<SwipeablePanel> {
    * You can pass your scroll view props
    */
   scrollViewProps?: ScrollViewProps;
+  onTouch?: () => void;
+  onRelease?: () => void;
 }
 
 declare var LARGE_PANEL_CONTENT_HEIGHT: number;

@@ -43,6 +43,9 @@ type SwipeablePanelProps = {
   barContainerStyle?: object,
   allowTouchOutside?: boolean;
   scrollViewProps?: ScrollViewProps;
+  onTouch?: () => void;
+  onRelease?: () => void;
+
 };
 
 type MaybeAnimated<T> = T | Animated.Value;
@@ -92,7 +95,13 @@ class SwipeablePanel extends Component<SwipeablePanelProps, SwipeablePanelState>
           y: this.animatedValueY,
         });
         this.state.pan.setValue({ x: 0, y: 0 });
+
+        // Call onTouch callback
+        if (this.props.onTouch) {
+          this.props.onTouch();
+        }
       },
+
       onPanResponderMove: (evt, gestureState) => {
         if (
           (this.state.status === 1 && Math.abs(this.state.pan.y._value) <= this.state.pan.y._offset) ||
@@ -115,6 +124,10 @@ class SwipeablePanel extends Component<SwipeablePanelProps, SwipeablePanelState>
           if (this.state.status === STATUS.LARGE) this._animateTo(onlyLarge ? STATUS.CLOSED : STATUS.SMALL);
           else this._animateTo(0);
         } else this._animateTo(this.state.status);
+        // Call onRelease callback
+        if (this.props.onRelease) {
+          this.props.onRelease();
+        }
       },
     });
   }
